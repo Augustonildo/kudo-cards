@@ -1,4 +1,4 @@
-# Kudo4You
+# Kudo4Us
 
 Repositório backend criado para o trabalho prático em grupo da disciplina Prática em Desenvolvimento de Software da UFMG.
 
@@ -14,7 +14,7 @@ Raphael Heringer Silva
 
 ## Escopo
 
-O Kudo4You é um sistema de troca de [Kudo Cards](https://management30.com/practice/kudo-cards/) entre usuários que promove um espaço interativo e saudável para seus membros. Os usuários da plataforma poderão enviar e receber Kudos, assim como visualizar e interagir com as palavras de admirações publicadas nos Kudos de seus colegas.
+O Kudo4Us é um sistema de troca de [Kudo Cards](https://management30.com/practice/kudo-cards/) entre usuários que promove um espaço interativo e saudável para seus membros. Os usuários da plataforma poderão enviar e receber Kudos, assim como visualizar e interagir com as palavras de admirações publicadas nos Kudos de seus colegas.
 
 ## Tecnologias
 
