@@ -19,3 +19,5 @@ O Kudo4You é um sistema de troca de [Kudo Cards](https://management30.com/pract
 ## Tecnologias
 
 O sistema será desenvolvido em ReactJs no frontend e por Lambda Functions em NestJs no backend. Utilizaremos o banco de dados não-relacional DynamoDB. A arquitetura do projeto seguirá o desenho a seguir:
+
+![arquitetural](https://user-images.githubusercontent.com/23284555/138171679-4ad15be5-2f7d-4af9-a07a-445cc3456148.png)
