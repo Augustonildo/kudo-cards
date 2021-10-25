@@ -4,13 +4,13 @@ Repositório criado para o trabalho prático em grupo da disciplina Prática em 
 
 ## Equipe
 
-Augusto Carvalho Porto Pereira
+Augusto Carvalho Porto Pereira (fullstack)
 
-Guilherme Luiz Lara Silva
+Guilherme Luiz Lara Silva (fullstack)
 
-Rafael Bicalho Roth
+Rafael Bicalho Roth (fullstack)
 
-Raphael Heringer Silva
+Raphael Heringer Silva (fullstack)
 
 ## Escopo
 
@@ -18,6 +18,10 @@ O Kudo4Us é um sistema de troca de [Kudo Cards](https://management30.com/practi
 
 ## Tecnologias
 
-O sistema será desenvolvido em ReactJs no frontend e por Lambda Functions em NestJs no backend. Utilizaremos o banco de dados não-relacional DynamoDB. A arquitetura do projeto seguirá o desenho a seguir:
+O sistema será desenvolvido em ReactJs no frontend e por Lambda Functions em NodeJs no backend. Utilizaremos o banco de dados não-relacional DynamoDB. A arquitetura do projeto seguirá o desenho a seguir:
 
 ![arquitetural](https://user-images.githubusercontent.com/23284555/138171679-4ad15be5-2f7d-4af9-a07a-445cc3456148.png)
+
+## Backlog
+
+O backlog do projeto está disponível na aba [Projects](https://github.com/Augustonildo/kudo-cards/projects)
