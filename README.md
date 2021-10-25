@@ -1,6 +1,6 @@
 # Kudo4Us
 
-Repositório backend criado para o trabalho prático em grupo da disciplina Prática em Desenvolvimento de Software da UFMG.
+Repositório criado para o trabalho prático em grupo da disciplina Prática em Desenvolvimento de Software da UFMG.
 
 ## Equipe
 
