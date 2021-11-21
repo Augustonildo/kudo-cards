@@ -1,9 +1,19 @@
 {
+  "scripts": {
+    "format": "prettier --write **/*.{js,jsx,ts,tsx}",
+    "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\" --max-warnings=0 --fix"
+  },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.41.0",
     "serverless-dynamodb-local": "^0.2.40",
     "serverless-http": "^2.7.0",
     "serverless-offline": "^8.3.0",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1"
   }
 }
