@@ -1,9 +1,42 @@
-const serverless = require('serverless-http');
-const express = require('express')
-const app = express()
+const service = require('./service');
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+const requestManager = response => {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({content: response})
+  }
+}
 
-module.exports.handler = serverless(app);
+const fnHandler = async (context, event) => {
+  try {
+    const func = FUNCTION_PATH[event.rawPath]
+    return await func(event)
+  }
+  catch (ex) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+            message: `Bad request ${ex}`,
+      }),
+    }
+  }
+}
+
+const createKudoHandler = (event) => {
+  const kudoData = JSON.parse(event.body)
+  return Promise.resolve(service.kudoService().createKudo(kudoData)).then(response => requestManager(JSON.parse(event.body)))
+}
+
+const getKudos = async (event) => {
+  return Promise.resolve(service.kudoService().getKudos()).then(response => requestManager(response))
+}
+
+const FUNCTION_PATH = {
+  '/kudo':  createKudoHandler,
+  '/kudos':  getKudos
+}
+
+module.exports.handler = async (event, context, callback) => {
+  const response = await fnHandler(context, event);
+  callback(null, response)
+};
