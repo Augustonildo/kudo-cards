@@ -13,22 +13,16 @@ export default function Composer() {
     setKudoContent(event.target.value);
   }
 
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.avatar} />
-      <form className={styles.composer} onSubmit={handleSubmit}>
-        <input className={styles.input} type="text" placeholder="Kudo para..." />
-        <textarea
-          className={styles.textarea}
-          cols={25}
-          rows={5}
-          placeholder="Escreva seu kudo..."
-          onChange={handleChange}
-        />
-        <button className={styles.composerButton} type="submit">
-          Publicar!
-        </button>
-      </form>
-    </div>
-  );
+    return (
+            <form className={styles.composer} onSubmit={handleSubmit}>
+                <input className={styles.input} type="text" placeholder="Kudo para..." />
+                <textarea 
+                    className={styles.textarea}
+                    cols={25} 
+                    rows={5} 
+                    placeholder="Escreva seu kudo..." 
+                    onChange={handleChange} />
+                <button className={styles.composerButton} type="submit">Publicar!</button>
+            </form>
+    ); 
 }
