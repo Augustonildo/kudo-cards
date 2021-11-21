@@ -1,13 +1,13 @@
-import apiProvider from "./provider";
+import { apiProvider } from "./provider";
 
-export default class Api {
-  getKudos() {
-    let barramento = `/kudos`;
-    return apiProvider.get(barramento);
-  }
+const getKudos = () => {
+  let barramento = `kudos`;
+  return apiProvider.get(barramento);
+};
 
-  postKudos(body) {
-    let barramento = `/kudos`;
-    return apiProvider.post(barramento, body);
-  }
-}
+const postKudos = (body) => {
+  let barramento = `kudo`;
+  return apiProvider.post(barramento, body);
+};
+
+export const apiTasks = { getKudos, postKudos };
