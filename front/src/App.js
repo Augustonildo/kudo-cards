@@ -1,9 +1,12 @@
 import Timeline from './components/timeline/Timeline';
+import KudoProvider from './contexts/KudoContext';
 
 function App() {
   return (
     <main>
-      <Timeline />
+      <KudoProvider>
+        <Timeline />
+      </KudoProvider>
     </main>
   );
 }
