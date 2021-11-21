@@ -1,7 +1,6 @@
-import Composer from './components/composer/Composer'
+import Composer from './components/composer/Composer';
 
-
-// possible color pallete 
+// possible color pallete
 // #000000
 // #AA14F0
 // #BC8CF2
@@ -12,7 +11,7 @@ function App() {
     <main>
       <Composer />
     </main>
-    );
+  );
 }
 
 export default App;
