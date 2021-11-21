@@ -1,30 +1,29 @@
 import axios from "axios";
-import { handleResponse, handleError } from "./response";
 
 const BASE_URL = "https://1a89l59dfb.execute-api.us-east-1.amazonaws.com";
 
-const get = (resource) => {
+const get = (resource, handleResponse = {}, handleError = {}) => {
   return axios
     .get(`${BASE_URL}/${resource}`)
     .then(handleResponse)
     .catch(handleError);
 };
 
-const post = (resource, body) => {
+const post = (resource, body, handleResponse = {}, handleError = {}) => {
   return axios
     .post(`${BASE_URL}/${resource}`, body)
     .then(handleResponse)
     .catch(handleError);
 };
 
-const put = (resource, body) => {
+const put = (resource, body, handleResponse = {}, handleError = {}) => {
   return axios
     .put(`${BASE_URL}/${resource}`, body)
     .then(handleResponse)
     .catch(handleError);
 };
 
-const remove = (resource, id) => {
+const remove = (resource, id, handleResponse = {}, handleError = {}) => {
   return axios
     .delete(`${BASE_URL}/${resource}`, id)
     .then(handleResponse)
