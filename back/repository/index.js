@@ -5,8 +5,8 @@ module.exports.kudosRepository = () => {
   const dynamoDB = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
   const TableName = 'kudos';
   return {
-    insertKudo: kudo => {
-      const id = uuid.v4()
+    insertKudo: (kudo) => {
+      const id = uuid.v4();
       const params = {
         TableName,
         Item: {
@@ -20,13 +20,13 @@ module.exports.kudosRepository = () => {
           if (err) {
             throw ('Unable to add kudo. Error JSON:', JSON.stringify(err, null, 2));
           } else {
-              console.log(`Added kudo:" ${JSON.stringify(data, null, 2)}`)
-            }
+            console.log(`Added kudo:" ${JSON.stringify(data, null, 2)}`);
+          }
         });
       } catch (err) {
         console.log(err);
       }
-      return id
+      return id;
     },
     getKudos: async () => {
       const params = {

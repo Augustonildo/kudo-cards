@@ -1,4 +1,4 @@
-import { apiProvider } from "./provider";
+import { apiProvider } from './provider';
 
 const getKudos = () => {
   let barramento = `kudos`;
