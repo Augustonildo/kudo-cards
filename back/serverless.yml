@@ -26,11 +26,29 @@ functions:
       - httpApi:
           path: /kudo
           method: 'POST'
-          cors: true # <-- CORS!
+          cors: 
+            origin: '*' # <-- Specify allowed origin
+            headers: # <-- Specify allowed headers
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: true
       - httpApi:
           path: /kudos
           method: 'GET'
-          cors: true # <-- CORS!
+          cors: 
+            origin: '*' # <-- Specify allowed origin
+            headers: # <-- Specify allowed headers
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: true
 
 custom:
   tableRef: arn:aws:dynamodb:us-east-1:202773188232:table/kudos
