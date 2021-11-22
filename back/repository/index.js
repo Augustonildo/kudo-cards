@@ -6,10 +6,11 @@ module.exports.kudosRepository = () => {
   const TableName = 'kudos';
   return {
     insertKudo: (kudo) => {
+      const id = uuid.v4();
       const params = {
         TableName,
         Item: {
-          id: uuid.v4(),
+          id,
           date: new Date().toISOString(),
           ...kudo,
         },
@@ -19,12 +20,13 @@ module.exports.kudosRepository = () => {
           if (err) {
             throw ('Unable to add kudo. Error JSON:', JSON.stringify(err, null, 2));
           } else {
-            return `Added kudo:" ${JSON.stringify(data, null, 2)}`;
+            console.log(`Added kudo:" ${JSON.stringify(data, null, 2)}`);
           }
         });
       } catch (err) {
         console.log(err);
       }
+      return id;
     },
     getKudos: async () => {
       const params = {

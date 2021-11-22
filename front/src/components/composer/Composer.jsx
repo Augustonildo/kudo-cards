@@ -1,34 +1,34 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { KudoContext } from '../../contexts/KudoContext';
 import styles from './Composer.module.css';
 
 export default function Composer() {
-  const [kudoContent, setKudoContent] = useState('');
+  const { addKudo } = useContext(KudoContext);
+  const { register, handleSubmit, reset } = useForm();
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(kudoContent);
+  function onSubmit(data) {
+    addKudo({ ...data, sender: 'TEST_USER' });
+    reset();
   }
-
-  function handleChange(event) {
-    setKudoContent(event.target.value);
-  }
-
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.avatar} />
-      <form className={styles.composer} onSubmit={handleSubmit}>
-        <input className={styles.input} type="text" placeholder="Kudo para..." />
-        <textarea
-          className={styles.textarea}
-          cols={25}
-          rows={5}
-          placeholder="Escreva seu kudo..."
-          onChange={handleChange}
-        />
-        <button className={styles.composerButton} type="submit">
-          Publicar!
-        </button>
-      </form>
-    </div>
+    <form className={styles.composer} onSubmit={handleSubmit(onSubmit)}>
+      <input
+        className={styles.input}
+        type="text"
+        placeholder="Kudo para..."
+        {...register('recipient', { required: 'Campo obrigatorio!' })}
+      />
+      <textarea
+        className={styles.textarea}
+        cols={25}
+        rows={5}
+        placeholder="Escreva seu kudo..."
+        {...register('message', { required: 'Campo obrigatorio!' })}
+      />
+      <button className={styles.composerButton} type="submit">
+        Publicar!
+      </button>
+    </form>
   );
 }

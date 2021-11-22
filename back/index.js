@@ -23,9 +23,9 @@ const fnHandler = async (context, event) => {
 
 const createKudoHandler = (event) => {
   const kudoData = JSON.parse(event.body);
-  return Promise.resolve(service.kudoService().createKudo(kudoData)).then(() =>
-    requestManager(JSON.parse(event.body))
-  );
+  return Promise.resolve(service.kudoService().createKudo(kudoData)).then((id) => {
+    return requestManager({ ...JSON.parse(event.body), id });
+  });
 };
 
 const getKudos = async () => {

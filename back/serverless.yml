@@ -26,9 +26,11 @@ functions:
       - httpApi:
           path: /kudo
           method: 'POST'
+          cors: true # <-- CORS!
       - httpApi:
           path: /kudos
           method: 'GET'
+          cors: true # <-- CORS!
 
 custom:
   tableRef: arn:aws:dynamodb:us-east-1:202773188232:table/kudos

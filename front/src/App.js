@@ -1,15 +1,12 @@
-import Composer from './components/composer/Composer';
-
-// possible color pallete
-// #000000
-// #AA14F0
-// #BC8CF2
-// #EEEEEE
+import Timeline from './components/timeline/Timeline';
+import KudoProvider from './contexts/KudoContext';
 
 function App() {
   return (
     <main>
-      <Composer />
+      <KudoProvider>
+        <Timeline />
+      </KudoProvider>
     </main>
   );
 }
