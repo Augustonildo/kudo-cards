@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// const BASE_URL = 'http://localhost:3000';
-const BASE_URL = "https://1a89l59dfb.execute-api.us-east-1.amazonaws.com";
+const BASE_URL = process.env.REACT_API_URL || 'http://localhost:3000';
 
 const get = (resource, handleResponse = {}, handleError = {}) => {
   return axios.get(`${BASE_URL}/${resource}`).then(handleResponse).catch(handleError);

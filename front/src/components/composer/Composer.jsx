@@ -11,6 +11,7 @@ export default function Composer() {
     addKudo({ ...data, sender: 'TEST_USER' });
     reset();
   }
+
   return (
     <form className={styles.composer} onSubmit={handleSubmit(onSubmit)}>
       <input
