@@ -2,6 +2,10 @@ const service = require('./service');
 
 const requestManager = (response) => {
   return {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
+    },
     statusCode: 200,
     body: JSON.stringify({ content: response }),
   };
