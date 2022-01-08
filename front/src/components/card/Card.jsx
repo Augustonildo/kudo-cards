@@ -10,7 +10,6 @@ export default function Card({ recipient, sender, message }) {
 
   const onEmojiClick = (event, emojiObject) => {
     setPickedEmoji(emojiObject);
-    console.log(emojiObject);
   };
 
   return (
