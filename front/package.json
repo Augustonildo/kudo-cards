@@ -20,8 +20,8 @@
   },
   "scripts": {
     "serve": "serve -s build -l 5000",
-    "start": "PORT=3001 BROWSER=none react-scripts start",
-    "build": "react-scripts build",
+    "start": "cross-env PORT=3001 BROWSER=none react-scripts start",
+    "build": "cross-env react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
