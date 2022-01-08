@@ -35,16 +35,15 @@
   color: white;
   font-weight: bold;
   border: none;
-  border-radius: 45px;
+  border-radius: 12px;
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  padding: 4px 10px;
-  border-radius: 4px;
+  padding: 12px 24px;
   width: fit-content;
   align-self: flex-end;
-  box-shadow: 2px 2px #d9d9d9;
-  background-color: indigo;
+  box-shadow: 2px 2px var(--accent-color);
+  background-color: var(--tertiary-color);
 }
 
 .composerButton:hover {

@@ -1,26 +1,17 @@
 .timeline {
   height: 100%;
   display: flex;
-  margin: auto;
   flex-direction: column;
   align-items: center;
-  max-width: 600px;
+  width: 600px;
+  align-self: center;
 }
 
 .timeline > * {
   box-sizing: border-box;
-  border-bottom: 1.5px solid var(--secondary-color);
-  border-left: 1.5px solid var(--secondary-color);
-  border-right: 1.5px solid var(--secondary-color);
-}
-
-.logo {
-  width: 100%;
-  padding: 10px;
-}
-.logo > h1 {
-  font-size: 22px;
-  margin: auto;
+  border-bottom: 1.5px solid rgba(188, 140, 242, 0.25);
+  border-left: 1.5px solid rgba(188, 140, 242, 0.25);
+  border-right: 1.5px solid rgba(188, 140, 242, 0.25);
 }
 
 @media only screen and (max-width: 768px) {
