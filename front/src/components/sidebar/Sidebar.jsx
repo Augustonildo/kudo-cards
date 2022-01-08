@@ -1,4 +1,5 @@
 import { FiHome, FiSearch, FiAlertCircle } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import Logo from '../logo/Logo';
 import styles from './Sidebar.module.css';
 
@@ -19,12 +20,12 @@ export default function Sidebar() {
           </span>
           <span>Buscar</span>
         </div>
-        <div className={styles.menuItem}>
+        <Link to="/profile" className={styles.menuItem}>
           <span className={styles.menuItemIcon}>
             <FiAlertCircle />
           </span>
           <span>Perfil</span>
-        </div>
+        </Link>
       </div>
       <div className={styles.menuItem + ' ' + styles.buttonItemWrapper}>
         <button className={styles.composerButton}>Escreva um kudo!</button>

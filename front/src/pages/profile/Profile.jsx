@@ -1,3 +1,5 @@
+import User from '../../components/user/User';
+
 export default function Profile() {
-  return <h1> Profile </h1>;
+  return <User />;
 }
