@@ -25,3 +25,7 @@ O sistema será desenvolvido em ReactJs no frontend e por Lambda Functions em No
 ## Backlog
 
 O backlog do projeto está disponível na aba [Projects](https://github.com/Augustonildo/kudo-cards/projects)
+
+## Identidade Visual
+
+A UI do projeto bem como os protótipos das telas a serem desenvolvidas estão disponibilizados e em contínuo progresso na ferramenta [Figma](https://www.figma.com/file/MLM37IS8i8QiiKld1aSzRI/Kudo4Us?node-id=0%3A1)
