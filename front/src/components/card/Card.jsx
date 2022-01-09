@@ -1,16 +1,11 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Picker from 'emoji-picker-react';
 import Avatar from '../avatar/Avatar';
 import styles from './Card.module.css';
 
 export default function Card({ recipient, sender, message }) {
-  const [pickedEmoji, setPickedEmoji] = useState();
-  const [openEmojiPicker, setOpenEmojiPicker] = useState();
-
-  const onEmojiClick = (event, emojiObject) => {
-    setPickedEmoji(emojiObject);
-  };
+  const [reaction, setReaction] = useState();
+  const [openReactionBox, setOpenReactionBox] = useState();
 
   return (
     <article className={styles.card}>
@@ -24,10 +19,12 @@ export default function Card({ recipient, sender, message }) {
           </span>
         </div>
         <span className={styles.content}>{message}</span>
-        <div onClick={() => setOpenEmojiPicker((prevState) => !prevState)}>Reações:</div>
-        <div>{pickedEmoji?.emoji}</div>
-        <div className={styles.pickerWrapper}>
-          {openEmojiPicker ? <Picker onEmojiClick={onEmojiClick} /> : null}
+        <div onClick={() => setOpenReactionBox((prevState) => !prevState)}>Reações:</div>
+        <div>{reaction}</div>
+        <div>
+          {openReactionBox ? (
+            <input type="text" onChange={(e) => setReaction(e.target.value)} />
+          ) : null}
         </div>
       </div>
     </article>

@@ -1,19 +1,20 @@
-import { Outlet, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/home/Home';
-import Login from './pages/login/Login';
-import Profile from './pages/profile/Profile';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { useAuth } from './contexts/AuthContext';
+
+const UnauthenticatedApp = lazy(() => import('./pages/index/UnauthenticatedApp'));
+
+const AuthenticatedApp = lazy(() => import('./pages/index/AuthenticatedApp'));
 
 function App() {
+  const { isAuthenticated } = useAuth();
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Outlet />}>
-          <Route index element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="profile" element={<Profile />} />
-        </Route>
-      </Routes>
-    </Router>
+    <BrowserRouter>
+      <Suspense fallback={<p>loading...</p>}>
+        {isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      </Suspense>
+    </BrowserRouter>
   );
 }
 
