@@ -1,9 +1,10 @@
 import { createContext, useContext, useState } from 'react';
 
 export const AuthContext = createContext({
-  isAuthenticated: false,
-  authenticate: () => {},
   logout: () => {},
+  authenticate: () => {},
+  isAuthenticated: false,
+  getLoggedUser: () => {},
 });
 
 AuthContext.displayName = 'AuthContext';
@@ -14,18 +15,24 @@ export function AuthProvider({ children }) {
     () => Boolean(localToken?.length) ?? false
   );
 
-  function authenticate({ token }) {
+  function authenticate({ token, userInfo }) {
     setIsAuthenticated(true);
     localStorage.setItem('token', token);
+    localStorage.setItem('user', userInfo);
   }
 
   function logout() {
     setIsAuthenticated(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
+
+  function getLoggedUser() {
+    return localStorage.getItem('user');
   }
 
   return (
-    <AuthContext.Provider value={{ authenticate, isAuthenticated, logout }}>
+    <AuthContext.Provider value={{ authenticate, isAuthenticated, getLoggedUser, logout }}>
       {children}
     </AuthContext.Provider>
   );

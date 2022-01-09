@@ -1,24 +1,41 @@
 import { useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import Select from 'react-select';
+import { Controller, useForm } from 'react-hook-form';
 import { KudoContext } from '../../contexts/KudoContext';
+import { UserContext } from '../../contexts/UserContext';
 import styles from './Composer.module.css';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function Composer() {
+  const { getLoggedUser } = useAuth();
+  const { users } = useContext(UserContext);
   const { addKudo } = useContext(KudoContext);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, control } = useForm();
+
+  const loggedUser = getLoggedUser();
+  const displayableUsers = users?.filter(({ value }) => value !== loggedUser);
 
   function onSubmit(data) {
-    addKudo({ ...data, sender: 'TEST_USER' });
+    const sender = users.find(({ value }) => value === loggedUser);
+    addKudo({ ...data, sender });
     reset();
   }
 
   return (
     <form className={styles.composer} onSubmit={handleSubmit(onSubmit)}>
-      <input
-        className={styles.input}
-        type="text"
-        placeholder="Kudo para..."
-        {...register('recipient', { required: 'Campo obrigatorio!' })}
+      <Controller
+        control={control}
+        name="recipient"
+        render={({ field }) => (
+          <Select
+            isClearable
+            isSearchable
+            value={field.value}
+            onChange={field.onChange}
+            options={displayableUsers}
+            placeholder="Kudo para..."
+          />
+        )}
       />
       <textarea
         className={styles.textarea}

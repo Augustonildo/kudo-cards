@@ -15,7 +15,7 @@ export default function Login() {
 
   const { authenticate } = useAuth();
 
-  const onLoginSubmit = () => authenticate({ token: Date.now() });
+  const onLoginSubmit = (data) => authenticate({ token: Date.now(), userInfo: data.email });
 
   return (
     <div className={styles.wrapper}>

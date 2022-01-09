@@ -9,13 +9,13 @@ export default function Card({ recipient, sender, message }) {
 
   return (
     <article className={styles.card}>
-      <Avatar name={sender} />
+      <Avatar name={sender.label} />
       <div className={styles.cWrapper}>
         <div className={styles.header}>
           <span>
-            {sender}
+            {sender.label}
             <br />
-            Para {recipient}
+            Para {recipient.label}
           </span>
         </div>
         <span className={styles.content}>{message}</span>
@@ -32,7 +32,13 @@ export default function Card({ recipient, sender, message }) {
 }
 
 Card.propTypes = {
-  recipient: PropTypes.string,
-  sender: PropTypes.string,
+  recipient: PropTypes.shape({
+    label: PropTypes.string,
+    value: PropTypes.string,
+  }),
+  sender: PropTypes.shape({
+    value: PropTypes.string,
+    label: PropTypes.string,
+  }),
   message: PropTypes.string,
 };
