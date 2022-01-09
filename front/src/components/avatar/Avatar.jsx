@@ -21,4 +21,6 @@ export default function Avatar({ name, size = 40, radius = 20 }) {
 
 Avatar.propTypes = {
   name: PropTypes.string,
+  size: PropTypes.number,
+  radius: PropTypes.number,
 };
