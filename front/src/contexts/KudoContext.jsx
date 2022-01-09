@@ -20,7 +20,7 @@ export default function KudoProvider({ children }) {
     apiTasks
       .postKudos({
         recipient: kudo.recipient,
-        sender: 'TEST_USER',
+        sender: kudo.sender,
         message: kudo.message,
       })
       .then((res) => setKudos((prevState) => [...prevState, res.data.content]))
