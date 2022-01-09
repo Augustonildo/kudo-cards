@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(
     () => Boolean(localToken?.length) ?? false
   );
-  console.log(isAuthenticated);
+
   function authenticate({ token }) {
     setIsAuthenticated(true);
     localStorage.setItem('token', token);
