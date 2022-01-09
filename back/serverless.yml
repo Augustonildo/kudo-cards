@@ -14,6 +14,16 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource: ${self:custom.tableRef}
+    - Effect: Allow
+      Action:
+        - cognito-idp:ListUsers
+        - cognito-idp:SignUp
+        - cognito-idp:SignIn
+      Resource: ${self:custom.cognitoRef}
+  
+  httpApi:
+    cors: true
+    payload: '2.0'
 
 plugins:
   - serverless-offline
@@ -26,29 +36,16 @@ functions:
       - httpApi:
           path: /kudo
           method: 'POST'
-          cors: 
-            origin: '*' # <-- Specify allowed origin
-            headers: # <-- Specify allowed headers
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-            allowCredentials: true
       - httpApi:
           path: /kudos
           method: 'GET'
-          cors: 
-            origin: '*' # <-- Specify allowed origin
-            headers: # <-- Specify allowed headers
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-            allowCredentials: true
+      - httpApi:
+          path: /users
+          method: 'GET'
+
+    enviroment:
+      COGNITO_USER_POOL: arn:aws:cognito-idp:us-east-1:202773188232:userpool/us-east-1_flpuRzdez
 
 custom:
   tableRef: arn:aws:dynamodb:us-east-1:202773188232:table/kudos
+  cognitoRef: arn:aws:cognito-idp:us-east-1:202773188232:userpool/us-east-1_AF5l44Ear

@@ -1,4 +1,5 @@
-const service = require('./service');
+const kudosService = require('./src/kudos/service');
+const usersService = require('./src/users/service');
 
 const requestManager = (response) => {
   return {
@@ -27,13 +28,19 @@ const fnHandler = async (context, event) => {
 
 const createKudoHandler = (event) => {
   const kudoData = JSON.parse(event.body);
-  return Promise.resolve(service.kudoService().createKudo(kudoData)).then((id) => {
+  return Promise.resolve(kudosService.kudoService().createKudo(kudoData)).then((id) => {
     return requestManager({ ...JSON.parse(event.body), id });
   });
 };
 
-const getKudos = async () => {
-  return Promise.resolve(service.kudoService().getKudos()).then((response) =>
+const getKudos = () => {
+  return Promise.resolve(kudosService.kudoService().getKudos()).then((response) =>
+    requestManager(response)
+  );
+};
+
+const getUsers = () => {
+  return Promise.resolve(usersService.usersService().getUsers()).then((response) =>
     requestManager(response)
   );
 };
@@ -41,6 +48,7 @@ const getKudos = async () => {
 const FUNCTION_PATH = {
   '/kudo': createKudoHandler,
   '/kudos': getKudos,
+  '/users': getUsers,
 };
 
 module.exports.handler = async (event, context, callback) => {
