@@ -20,7 +20,7 @@ provider:
         - cognito-idp:SignUp
         - cognito-idp:SignIn
       Resource: ${self:custom.cognitoRef}
-  
+
   httpApi:
     cors: true
     payload: '2.0'
@@ -42,9 +42,9 @@ functions:
       - httpApi:
           path: /users
           method: 'GET'
-
-    enviroment:
-      COGNITO_USER_POOL: arn:aws:cognito-idp:us-east-1:202773188232:userpool/us-east-1_flpuRzdez
+      - httpApi:
+          path: /user
+          method: 'POST'
 
 custom:
   tableRef: arn:aws:dynamodb:us-east-1:202773188232:table/kudos
