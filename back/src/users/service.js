@@ -19,7 +19,19 @@ module.exports.usersService = () => {
     ],
   });
 
+  const succesfullyLogin = () => ({message: "Login Successfully"});
+
   return {
+    signIn: async (user) => {
+      try {
+        const response = await repository.usersRepository().signIn(user);
+        if (response) return succesfullyLogin();
+        return null;
+      } catch (ex) {
+        if(ex.code == 'UserNotConfirmedException') return succesfullyLogin();
+        throw (ex);
+      }
+    },
     signUp: async (user) => {
       const response = await repository.usersRepository().signUp(parseUserDataToAwsFormat(user));
       return response;

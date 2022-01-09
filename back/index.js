@@ -45,9 +45,16 @@ const getUsers = () => {
   );
 };
 
-const singUpUser = (event) => {
+const signUpUser = (event) => {
   const userData = JSON.parse(event.body);
   return Promise.resolve(usersService.usersService().signUp(userData)).then((response) =>
+    requestManager(response)
+  );
+};
+
+const signIn = (event) => {
+  const userData = JSON.parse(event.body);
+  return Promise.resolve(usersService.usersService().signIn(userData)).then((response) =>
     requestManager(response)
   );
 };
@@ -56,7 +63,8 @@ const FUNCTION_PATH = {
   '/kudo': createKudoHandler,
   '/kudos': getKudos,
   '/users': getUsers,
-  '/user': singUpUser,
+  '/user': signUpUser,
+  '/sign-in': signIn,
 };
 
 module.exports.handler = async (event, context, callback) => {
