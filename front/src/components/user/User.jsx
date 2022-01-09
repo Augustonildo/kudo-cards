@@ -18,7 +18,7 @@ export default function User() {
       </div>
       {/* TODO: Alterar "Nome Usuário Teste" para exibir nome do usuário logado */}
       <div className={styles.userImage}>
-        <Avatar name="Nome Usuário Teste" size="104" radius="50" />
+        <Avatar name="Nome Usuário Teste" size={104} radius={50} />
       </div>
       <p className={styles.username}> Nome Usuário Teste </p>
     </div>
