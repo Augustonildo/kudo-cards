@@ -19,7 +19,7 @@ export default function Timeline({ kudos }) {
 Timeline.propTypes = {
   kudos: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       sender: PropTypes.string,
       recipient: PropTypes.string,
       message: PropTypes.string,
