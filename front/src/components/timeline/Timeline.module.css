@@ -7,6 +7,14 @@
   align-self: center;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: center;
+  height: 100vh;
+}
+
 .timeline > * {
   box-sizing: border-box;
   border-bottom: 1.5px solid rgba(188, 140, 242, 0.25);
