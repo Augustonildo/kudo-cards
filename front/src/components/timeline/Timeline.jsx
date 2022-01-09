@@ -20,8 +20,14 @@ Timeline.propTypes = {
   kudos: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
-      sender: PropTypes.string,
-      recipient: PropTypes.string,
+      sender: PropTypes.shape({
+        value: PropTypes.string,
+        label: PropTypes.string,
+      }),
+      recipient: PropTypes.shape({
+        value: PropTypes.string,
+        label: PropTypes.string,
+      }),
       message: PropTypes.string,
     }).isRequired
   ),
