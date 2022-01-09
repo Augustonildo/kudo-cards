@@ -1,157 +1,76 @@
-import { Fragment } from 'react';
-import Logo from '../../components/logo/Logo';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import styles from './Login.module.css';
+import loginImage from './login.svg';
+import SvgLogo from '../../components/logo/SvgLogo';
+import { EMAIL_REGEX } from '../../utils/constants';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { authenticate } = useAuth();
+
+  const onLoginSubmit = () => authenticate({ token: Date.now() });
+
   return (
-    <Fragment>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          width: 1284,
-          height: 769,
-        }}
-      >
-        <svg width="720px" height="769px">
-          <rect width="720px" height="769px" fill="#BC8CF2" />
-          <img
-            src="../../login.svg"
-            alt="Login"
-            style={{
-              width: '707px',
-              height: '333px',
-            }}
-          />
-        </svg>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            marginLeft: '100px',
-            width: '416px',
-            height: '769px',
-          }}
-        >
-          <Logo size="login" />
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              marginTop: '140px',
-              width: '248px',
-              height: '211px',
-              alignSelf: 'center',
-            }}
-          >
-            <div
-              style={{
-                height: '54px',
-                marginBottom: '24px',
-              }}
-            >
-              <h3
-                style={{
-                  fontFamily: 'Arima Madurai',
-                  fontSize: '14px',
-                  fontWeight: 'bold',
-                  marginBottom: '1px',
-                }}
-              >
-                Usuário
-              </h3>
-              <input
-                type="email"
-                reclassName={styles.textarea}
-                style={{
-                  cols: 25,
-                  rows: 1,
-                  fontFamily: 'Arima Madurai',
-                  fontSize: '20px',
-                  borderColor: '#D6D6D6',
-                  borderRadius: '1px',
-                  height: '36px',
-                  resize: 'none',
-                }}
-              />
-            </div>
-            <div
-              style={{
-                height: '54px',
-                marginBottom: '24px',
-              }}
-            >
-              <h3
-                style={{
-                  fontFamily: 'Arima Madurai',
-                  fontSize: '14px',
-                  fontWeight: 'bold',
-                  marginBottom: '1px',
-                }}
-              >
-                Senha
-              </h3>
-              <input
-                type="password"
-                reclassName={styles.textarea}
-                style={{
-                  cols: 25,
-                  rows: 1,
-                  fontFamily: 'Arima Madurai',
-                  fontSize: '20px',
-                  borderColor: '#D6D6D6',
-                  borderRadius: '1px',
-                  height: '36px',
-                  resize: 'none',
-                }}
-              />
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                marginTop: '24px',
-                width: '248px',
-              }}
-            >
-              <button
-                type="button"
-                style={{
-                  backgroundColor: '#AA14F0',
-                  borderRadius: '5px',
-                  borderColor: '#AA14F0',
-                  fontFamily: 'Arima Madurai',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  marginRight: '16px',
-                  color: 'white',
-                  width: '80px',
-                  height: '55px',
-                }}
-              >
+    <div className={styles.wrapper}>
+      <div className={styles.backgroundSection}>
+        <img src={loginImage} className={styles.image} alt="Pessoas celebrando" loading="lazy" />
+      </div>
+      <div className={styles.contentWrapper}>
+        <div className={styles.logoWrapper}>
+          <SvgLogo />
+        </div>
+        <form onSubmit={handleSubmit(onLoginSubmit)}>
+          <div className={styles.formWrapper}>
+            <label htmlFor="email">Usuário</label>
+            <input
+              {...register('email', {
+                required: 'Email é obrigatório.',
+                pattern: {
+                  value: EMAIL_REGEX,
+                  message: 'Insira um email válido.',
+                },
+              })}
+              type="email"
+              className={styles.input}
+              placeholder="Coloque aqui seu email..."
+            />
+            <span className={styles.errorAlert} role="alert">
+              {errors?.email?.message}
+            </span>
+            <label htmlFor="password">Senha</label>
+            <input
+              {...register('password', {
+                required: 'Senha é obrigatória.',
+                minLength: {
+                  value: 7,
+                  message: 'A senha deve possuir no mínimo 7 caracteres.',
+                },
+              })}
+              type="password"
+              className={styles.input}
+              placeholder="Coloque aqui sua senha..."
+            />
+            <span className={styles.errorAlert} role="alert">
+              {errors?.password?.message}
+            </span>
+            <div className={styles.wrapper}>
+              <button type="submit" className={styles.submitButton}>
                 Entrar
               </button>
-              <button
-                type="button"
-                style={{
-                  backgroundColor: 'white',
-                  borderRadius: '5px',
-                  borderColor: '#AA14F0',
-                  fontFamily: 'Arima Madurai',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  color: '#AA14F0',
-                  width: '106px',
-                  height: '55px',
-                }}
-              >
-                Registrar
-              </button>
+              <Link to="/registro" className={styles.registerButton}>
+                Cadastrar
+              </Link>
             </div>
           </div>
-        </div>
+        </form>
       </div>
-    </Fragment>
+    </div>
   );
 }
