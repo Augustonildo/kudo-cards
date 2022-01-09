@@ -1,9 +1,18 @@
+import { useContext } from 'react';
+import { KudoContext } from '../../contexts/KudoContext';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Avatar from '../avatar/Avatar';
+import CardList from '../card/CardList';
 import styles from './User.module.css';
 
 export default function User() {
+  const { kudos } = useContext(KudoContext);
+  // TODO: Alterar "Nome Usuário Teste" para exibir nome do usuário logado
+  const userEmail = 'usuarioteste@gmail.com';
+  const userName = 'Nome Usuário Teste';
+  const myKudos = kudos.filter((kudo) => kudo.sender === userEmail || kudo.recipient === userEmail);
+
   return (
     <div className={styles.user}>
       <div className={styles.profileBackground}>
@@ -16,11 +25,13 @@ export default function User() {
           </Link>
         </div>
       </div>
-      {/* TODO: Alterar "Nome Usuário Teste" para exibir nome do usuário logado */}
       <div className={styles.userImage}>
-        <Avatar name="Nome Usuário Teste" size="104" radius="50" />
+        <Avatar name={userName} size={104} radius={50} />
       </div>
-      <p className={styles.username}> Nome Usuário Teste </p>
+      <p className={styles.username}> {userName} </p>
+      <div className={styles.userCardList}>
+        <CardList kudos={myKudos} />
+      </div>
     </div>
   );
 }

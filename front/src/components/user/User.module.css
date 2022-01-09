@@ -21,6 +21,15 @@
   margin: 0;
 }
 
+.userCardList {
+  width: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
 .profileBackground {
   width: 720px;
   height: 252px;
