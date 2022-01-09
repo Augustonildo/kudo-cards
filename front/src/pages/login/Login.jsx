@@ -14,16 +14,21 @@ export default function Login() {
         }}
       >
         <svg width="720px" height="769px">
-          <g color="#BC8CF2">
-            <rect width="720px" height="769px" fill="currentcolor" />
-          </g>
+          <rect width="720px" height="769px" fill="#BC8CF2" />
+          <img
+            src="../../login.svg"
+            alt="Login"
+            style={{
+              width: '707px',
+              height: '333px',
+            }}
+          />
         </svg>
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
-            marginLeft: '113px',
+            marginLeft: '100px',
             width: '416px',
             height: '769px',
           }}
@@ -34,7 +39,7 @@ export default function Login() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              marginTop: '30px',
+              marginTop: '140px',
               width: '248px',
               height: '211px',
               alignSelf: 'center',
@@ -56,7 +61,8 @@ export default function Login() {
               >
                 Usuário
               </h3>
-              <textarea
+              <input
+                type="email"
                 reclassName={styles.textarea}
                 style={{
                   cols: 25,
@@ -86,7 +92,8 @@ export default function Login() {
               >
                 Senha
               </h3>
-              <textarea
+              <input
+                type="password"
                 reclassName={styles.textarea}
                 style={{
                   cols: 25,
@@ -118,7 +125,6 @@ export default function Login() {
                   fontSize: '16px',
                   fontWeight: 'bold',
                   marginRight: '16px',
-                  marginLeft: '13px',
                   color: 'white',
                   width: '80px',
                   height: '55px',
