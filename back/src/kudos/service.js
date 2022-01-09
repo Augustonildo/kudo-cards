@@ -1,4 +1,4 @@
-const repository = require('../repository');
+const repository = require('./repository');
 
 module.exports.kudoService = () => {
   return {
