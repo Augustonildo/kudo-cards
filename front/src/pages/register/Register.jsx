@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import styles from './Login.module.css';
-import loginImage from './login.svg';
+import styles from './Register.module.css';
+import loginImage from '../login/login.svg';
 import SvgLogo from '../../components/logo/SvgLogo';
 import { EMAIL_REGEX } from '../../utils/constants';
 import { useAuth } from '../../contexts/AuthContext';
 
-export default function Login() {
+export default function Register() {
   const {
     register,
     handleSubmit,
@@ -15,7 +14,7 @@ export default function Login() {
 
   const { authenticate } = useAuth();
 
-  const onLoginSubmit = () => authenticate({ token: Date.now() });
+  const onRegisterSubmit = () => authenticate({ token: Date.now() });
 
   return (
     <div className={styles.wrapper}>
@@ -26,9 +25,21 @@ export default function Login() {
         <div className={styles.logoWrapper}>
           <SvgLogo />
         </div>
-        <form onSubmit={handleSubmit(onLoginSubmit)}>
+        <form onSubmit={handleSubmit(onRegisterSubmit)}>
           <div className={styles.formWrapper}>
-            <label htmlFor="email">Usuário</label>
+            <label htmlFor="user">Usuário</label>
+            <input
+              {...register('user', {
+                required: 'Usuário é obrigatório.',
+              })}
+              type="text"
+              className={styles.input}
+              placeholder="Coloque aqui seu usuário..."
+            />
+            <span className={styles.errorAlert} role="alert">
+              {errors?.user?.message}
+            </span>
+            <label htmlFor="email">Email</label>
             <input
               {...register('email', {
                 required: 'Email é obrigatório.',
@@ -60,14 +71,9 @@ export default function Login() {
             <span className={styles.errorAlert} role="alert">
               {errors?.password?.message}
             </span>
-            <div className={styles.wrapper}>
-              <button type="submit" className={styles.submitButton}>
-                Entrar
-              </button>
-              <Link to="/registro" className={styles.registerButton}>
-                Cadastrar
-              </Link>
-            </div>
+            <button type="submit" className={styles.submitButton}>
+              Cadastrar
+            </button>
           </div>
         </form>
       </div>

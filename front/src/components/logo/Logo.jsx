@@ -9,19 +9,6 @@ export default function Logo({ size }) {
       return <h3 className={styles.logo}>Kudo4Us</h3>;
     case 'lg':
       return <h1 className={styles.logo}>Kudo4Us</h1>;
-    case 'login':
-      return (
-        <h1
-          className={styles.logo}
-          style={{
-            fontSize: '109px',
-            width: '416px',
-            height: '109px',
-          }}
-        >
-          Kudo4Us
-        </h1>
-      );
     default:
       return null;
   }
