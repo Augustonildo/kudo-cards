@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Card from '../card/Card';
+import CardList from '../card/CardList';
 import Logo from '../logo/Logo';
 import Composer from '../composer/Composer';
 import styles from './Timeline.module.css';
@@ -10,14 +10,7 @@ export default function Timeline({ kudos }) {
       <div className={styles.timeline}>
         <Logo size="md" />
         <Composer />
-        {kudos.map((kudo) => (
-          <Card
-            key={kudo.id}
-            sender={kudo.sender}
-            recipient={kudo.recipient}
-            message={kudo.message}
-          />
-        ))}
+        <CardList kudos={kudos} />
       </div>
     </div>
   );
