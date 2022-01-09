@@ -11,7 +11,16 @@ export default function UserProvider({ children }) {
   useEffect(() => {
     apiTasks
       .getUsers()
-      .then((res) => setUsers(res.data.content))
+      .then((res) =>
+        setUsers(
+          res.data.content?.map(({ email, name }) => {
+            return {
+              value: email,
+              label: name,
+            };
+          })
+        )
+      )
       .catch((error) => console.error('Error getting users', error));
   }, []);
 
