@@ -10,7 +10,7 @@ Guilherme Luiz Lara Silva (fullstack)
 
 Rafael Bicalho Roth (fullstack)
 
-Raphael Heringer Silva (fullstack)
+Raphael Heringer Rangel (fullstack)
 
 ## Escopo
 
