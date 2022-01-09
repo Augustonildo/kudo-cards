@@ -45,10 +45,18 @@ const getUsers = () => {
   );
 };
 
+const singUpUser = (event) => {
+  const userData = JSON.parse(event.body);
+  return Promise.resolve(usersService.usersService().signUp(userData)).then((response) =>
+    requestManager(response)
+  );
+};
+
 const FUNCTION_PATH = {
   '/kudo': createKudoHandler,
   '/kudos': getKudos,
   '/users': getUsers,
+  '/user': singUpUser,
 };
 
 module.exports.handler = async (event, context, callback) => {
