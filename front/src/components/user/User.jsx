@@ -1,9 +1,14 @@
+import { useContext } from 'react';
+import { KudoContext } from '../../contexts/KudoContext';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Avatar from '../avatar/Avatar';
+import CardList from '../card/CardList';
 import styles from './User.module.css';
 
 export default function User() {
+  const { kudos } = useContext(KudoContext);
+
   return (
     <div className={styles.user}>
       <div className={styles.profileBackground}>
@@ -21,6 +26,9 @@ export default function User() {
         <Avatar name="Nome Usuário Teste" size={104} radius={50} />
       </div>
       <p className={styles.username}> Nome Usuário Teste </p>
+      <div className={styles.userCardList}>
+        <CardList kudos={kudos} />
+      </div>
     </div>
   );
 }
