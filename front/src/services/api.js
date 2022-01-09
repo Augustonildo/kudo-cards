@@ -10,4 +10,9 @@ const postKudos = (body) => {
   return apiProvider.post(barramento, body);
 };
 
-export const apiTasks = { getKudos, postKudos };
+const getUsers = () => {
+  let barramento = `users`;
+  return apiProvider.get(barramento);
+};
+
+export const apiTasks = { getKudos, postKudos, getUsers };
