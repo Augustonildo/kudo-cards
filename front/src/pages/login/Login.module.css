@@ -1,0 +1,15 @@
+.login {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 248px;
+    align-self: center;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .login {
+      max-width: none;
+      width: auto;
+    }
+  }
