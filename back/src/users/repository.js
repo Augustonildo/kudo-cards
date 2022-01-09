@@ -1,11 +1,41 @@
 const AWS = require('aws-sdk');
+const CognitoIdentity = require('amazon-cognito-identity-js')
 const uuid = require('uuid');
 
 module.exports.usersRepository = () => {
   const cognito = new AWS.CognitoIdentityServiceProvider({ region: 'us-east-1' });
   const clientId = '755ao9cj8j257b9u605of5huff';
-  
+  const userPoolId = 'us-east-1_AF5l44Ear';
+
   return {
+    signIn: async (user) => {
+      if (!user || !user.email || !user.password) {
+          throw('Invalid parameters.');
+      }
+
+      const poolData = {
+          UserPoolId: userPoolId,
+          ClientId: clientId
+      };
+      const userPool = new CognitoIdentity.CognitoUserPool(poolData);
+      const authData = {
+          Username: user.email,
+          Password: user.password
+      };
+      const authDetails = new CognitoIdentity.AuthenticationDetails(authData);
+      const userData = {
+          Username: user.email,
+          Pool: userPool
+      };
+
+      const cognitoUser = new CognitoIdentity.CognitoUser(userData);
+      return new Promise(function(resolve, reject) { 
+        cognitoUser.authenticateUser(authDetails, {
+          onSuccess: resolve,
+          onFailure: reject
+        });
+      });
+    },
     signUp: async (user) => {
       const param = {
         ...user,
