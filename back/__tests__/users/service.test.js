@@ -53,4 +53,4 @@ describe('kudos service', () => {
         expect(formatedUsersData[0].email).toBe('emailValue');
         expect(formatedUsersData[0].name).toBe('nameValue');
     });
-})
+});

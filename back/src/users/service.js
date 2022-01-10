@@ -43,6 +43,6 @@ module.exports.usersService = () => {
     succesfullyLogin,
     parseUserDataToAwsFormat,
     formatUsersData,
-    getAtrributeValue
+    getAtrributeValue,
   };
 };

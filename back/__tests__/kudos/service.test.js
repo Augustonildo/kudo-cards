@@ -11,4 +11,4 @@ describe('kudos service', () => {
         expect(kudosCard[2].message).toBe('Segundo');
         expect(kudosCard[3].message).toBe('Primeiro');
     });
-})
+});
