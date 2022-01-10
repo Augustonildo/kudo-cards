@@ -17,4 +17,20 @@ describe('kudos service', () => {
         expect(awsUserFormat.UserAttributes[0].Name).toBe('name');
         expect(awsUserFormat.UserAttributes[0].Value).toBe(user.name);
     });
+    it('Should return attribute value when is exist', () => {
+        const attribute = [{
+            Name: "test",
+            Value: 0
+        }]
+        const testValue = userService.getAtrributeValue(attribute, 'test')
+        expect(testValue).toBe(0);
+    });
+    it('Should return undefined when attribute not exist', () => {
+        const attribute = [{
+            Name: "test",
+            Value: 0
+        }]
+        const testValue = userService.getAtrributeValue(attribute, 'test2')
+        expect(testValue).toBe(undefined);
+    });
 })
