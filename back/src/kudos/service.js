@@ -15,5 +15,6 @@ module.exports.kudoService = () => {
       const data = await repository.kudosRepository().getKudos();
       return data.sort(sortObjectArrayByDate);
     },
+    sortObjectArrayByDate
   };
 };
