@@ -6,6 +6,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.41.0",
     "amazon-cognito-identity-js": "^5.2.4",
+    "jest": "^27.4.7",
     "serverless-dynamodb-local": "^0.2.40",
     "serverless-http": "^2.7.0",
     "serverless-offline": "^8.3.0",
