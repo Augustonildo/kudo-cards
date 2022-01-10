@@ -40,5 +40,9 @@ module.exports.usersService = () => {
       const users = await repository.usersRepository().getUsers();
       return formatUsersData(users);
     },
+    succesfullyLogin,
+    parseUserDataToAwsFormat,
+    formatUsersData,
+    getAtrributeValue
   };
 };

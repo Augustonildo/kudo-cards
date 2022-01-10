@@ -33,4 +33,24 @@ describe('kudos service', () => {
         const testValue = userService.getAtrributeValue(attribute, 'test2')
         expect(testValue).toBe(undefined);
     });
+    it('Should format user data correctly', () => {
+        const attributes = [
+            {
+              Name: "name",
+              Value: "nameValue",
+            },
+            {
+              Name: "email",
+              Value: "emailValue",
+            },
+        ];
+        const user = [
+            {
+              Attributes: attributes
+            },
+        ];
+        const formatedUsersData = userService.formatUsersData(user)
+        expect(formatedUsersData[0].email).toBe('emailValue');
+        expect(formatedUsersData[0].name).toBe('nameValue');
+    });
 })
