@@ -1,18 +1,28 @@
 import { apiProvider } from './provider';
 
 const getKudos = () => {
-  let barramento = `kudos`;
-  return apiProvider.get(barramento);
+  const path = `kudos`;
+  return apiProvider.get(path);
 };
 
 const postKudos = (body) => {
-  let barramento = `kudo`;
-  return apiProvider.post(barramento, body);
+  const path = `kudo`;
+  return apiProvider.post(path, body);
 };
 
 const getUsers = () => {
-  let barramento = `users`;
-  return apiProvider.get(barramento);
+  const path = `users`;
+  return apiProvider.get(path);
 };
 
-export const apiTasks = { getKudos, postKudos, getUsers };
+const signIn = (body) => {
+  const path = 'sign-in';
+  return apiProvider.post(path, body);
+};
+
+const createUser = (body) => {
+  const path = 'user';
+  return apiProvider.post(path, body);
+};
+
+export const apiTasks = { getKudos, signIn, createUser, postKudos, getUsers };

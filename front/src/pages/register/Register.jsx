@@ -1,9 +1,11 @@
+import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import styles from './Register.module.css';
 import loginImage from '../login/login.svg';
 import SvgLogo from '../../components/logo/SvgLogo';
 import { EMAIL_REGEX } from '../../utils/constants';
 import { useAuth } from '../../contexts/AuthContext';
+import { apiTasks } from '../../services/api';
 
 export default function Register() {
   const {
@@ -14,7 +16,20 @@ export default function Register() {
 
   const { authenticate } = useAuth();
 
-  const onRegisterSubmit = () => authenticate({ token: Date.now() });
+  const onRegisterSubmit = (data) => {
+    apiTasks
+      .createUser(data)
+      .then((res) => {
+        if (res.status === 200) {
+          authenticate({ token: Date.now(), userInfo: data.email });
+          toast.success('Usuário criado com sucesso!');
+        }
+        if (res.status === 400) {
+          toast.error('Algum erro ocorreu! Tente novamente.');
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -27,17 +42,17 @@ export default function Register() {
         </div>
         <form onSubmit={handleSubmit(onRegisterSubmit)}>
           <div className={styles.formWrapper}>
-            <label htmlFor="user">Usuário</label>
+            <label htmlFor="name">Nome</label>
             <input
-              {...register('user', {
-                required: 'Usuário é obrigatório.',
+              {...register('name', {
+                required: 'Nome é obrigatório.',
               })}
               type="text"
               className={styles.input}
-              placeholder="Coloque aqui seu usuário..."
+              placeholder="Coloque aqui seu nome..."
             />
             <span className={styles.errorAlert} role="alert">
-              {errors?.user?.message}
+              {errors?.name?.message}
             </span>
             <label htmlFor="email">Email</label>
             <input
