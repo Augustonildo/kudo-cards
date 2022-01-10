@@ -23,7 +23,7 @@ export default function KudoProvider({ children }) {
         sender: kudo.sender,
         message: kudo.message,
       })
-      .then((res) => setKudos((prevState) => [...prevState, res.data.content]))
+      .then((res) => setKudos((prevState) => [res.data.content, ...prevState]))
       .catch((error) => console.error('Error inserting kudo', error));
   }
 

@@ -12,11 +12,10 @@ export default function Card({ recipient, sender, message }) {
       <Avatar name={sender.label} />
       <div className={styles.cWrapper}>
         <div className={styles.header}>
-          <span className={styles.cardTitle}>
-            {sender.label}
-            <br />
-            Para: {recipient.label}
-          </span>
+          <div className={styles.cardTitle}>
+            <span>{sender.label}</span>
+            <span>Para: {recipient.label}</span>
+          </div>
         </div>
         <span className={styles.content}>{message}</span>
         {/* <div onClick={() => setOpenReactionBox((prevState) => !prevState)}>Reações:</div>

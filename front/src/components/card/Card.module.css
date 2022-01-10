@@ -14,11 +14,9 @@
 }
 
 .cardTitle {
-  font-family: 'Arima Madurai';
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 24px;
+  display: flex;
+  flex-direction: column;
+  line-height: 20px;
 }
 
 .content {
