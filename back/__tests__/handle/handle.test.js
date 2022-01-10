@@ -1,15 +1,24 @@
 const handleFunc = require('../../index');
 
 const mockGetKudos = jest.fn()
-const mockGetUsers = jest.fn()
+
 jest.mock('../../src/kudos/service', () => ({
-    kudosService: () => ({
-        getKudos: mockGetKudos
-    }),
-    usersService: () => ({
-        getUsers: mockGetUsers
-    }),
+    kudosService: {
+        kudoService: () => ({
+            getKudos: mockGetKudos
+        }),
+    }
 }));
+
+const mockGetUsers = jest.fn()
+jest.mock('../../src/users/service', () => ({
+    usersService: { 
+        usersService: () => ({
+            getUsers: mockGetUsers
+        }),
+    }
+}));
+
 
 describe('Handle Func', () => {
     it('Should call getKudos', () => {
