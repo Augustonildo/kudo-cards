@@ -1,5 +1,11 @@
 const repository = require('./repository');
 
+const sortObjectArrayByDate = (a, b) => {
+  if (a.date < b.date) return 1;
+  if (a.date > b.date) return -1;
+  return 0;
+};
+
 module.exports.kudoService = () => {
   return {
     createKudo: (kudo) => {
@@ -7,7 +13,7 @@ module.exports.kudoService = () => {
     },
     getKudos: async () => {
       const data = await repository.kudosRepository().getKudos();
-      return data;
+      return data.sort(sortObjectArrayByDate);
     },
   };
 };
