@@ -4,7 +4,6 @@ const mockKudos = require('./mocks/kudos.mocks.json')
 describe('kudos service', () => {
     const kudosService = service.kudoService()
     it('Should return kudos order by asc', () => {
-        console.log(mockKudos[0])
         const kudosCard = mockKudos.sort(kudosService.sortObjectArrayByDate);
         expect(kudosCard[0].message).toBe('Quarto');
         expect(kudosCard[1].message).toBe('Terceiro');
