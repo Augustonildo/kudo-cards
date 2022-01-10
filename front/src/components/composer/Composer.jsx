@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import Select from 'react-select';
+import { toast } from 'react-toastify';
 import { Controller, useForm } from 'react-hook-form';
 import { KudoContext } from '../../contexts/KudoContext';
 import { UserContext } from '../../contexts/UserContext';
@@ -10,7 +11,13 @@ export default function Composer() {
   const { getLoggedUser } = useAuth();
   const { users } = useContext(UserContext);
   const { addKudo } = useContext(KudoContext);
-  const { register, handleSubmit, reset, control } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm();
 
   const loggedUser = getLoggedUser();
   const displayableUsers = users?.filter(({ value }) => value !== loggedUser);
@@ -18,6 +25,7 @@ export default function Composer() {
   function onSubmit(data) {
     const sender = users.find(({ value }) => value === loggedUser);
     addKudo({ ...data, sender });
+    toast.info('Kudo publicado com sucesso!');
     reset();
   }
 
@@ -44,6 +52,7 @@ export default function Composer() {
         placeholder="Escreva seu kudo..."
         {...register('message', { required: 'Campo obrigatorio!' })}
       />
+      <span role="alert">{errors?.message?.message}</span>
       <button className={styles.composerButton} type="submit">
         Publicar!
       </button>

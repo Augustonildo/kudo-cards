@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import styles from './Login.module.css';
 import loginImage from './login.svg';
 import SvgLogo from '../../components/logo/SvgLogo';
 import { EMAIL_REGEX } from '../../utils/constants';
 import { useAuth } from '../../contexts/AuthContext';
+import { apiTasks } from '../../services/api';
 
 export default function Login() {
   const {
@@ -15,7 +17,20 @@ export default function Login() {
 
   const { authenticate } = useAuth();
 
-  const onLoginSubmit = (data) => authenticate({ token: Date.now(), userInfo: data.email });
+  const onLoginSubmit = (data) => {
+    apiTasks
+      .signIn(data)
+      .then((res) => {
+        if (res.status === 200) {
+          authenticate({ token: Date.now(), userInfo: data.email });
+          toast.success('Login feito com sucesso!');
+        }
+        if (res.status === 400) {
+          toast.error('Informações de login incorretas!');
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -28,7 +43,7 @@ export default function Login() {
         </div>
         <form onSubmit={handleSubmit(onLoginSubmit)}>
           <div className={styles.formWrapper}>
-            <label htmlFor="email">Usuário</label>
+            <label htmlFor="email">Email</label>
             <input
               {...register('email', {
                 required: 'Email é obrigatório.',
