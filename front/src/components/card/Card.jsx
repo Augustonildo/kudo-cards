@@ -1,11 +1,14 @@
 // import { useState } from 'react';
 import PropTypes from 'prop-types';
+//import { NonceProvider } from 'react-select';
 import Avatar from '../avatar/Avatar';
 import styles from './Card.module.css';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function Card({ recipient, sender, message }) {
   // const [reaction, setReaction] = useState();
   // const [openReactionBox, setOpenReactionBox] = useState();
+  const { getLoggedUser } = useAuth();
 
   return (
     <article className={styles.card}>
@@ -25,6 +28,11 @@ export default function Card({ recipient, sender, message }) {
             <input type="text" onChange={(e) => setReaction(e.target.value)} />
           ) : null}
         </div> */}
+        {sender.value == getLoggedUser() ? (
+          <button id="removeKudo" className={styles.remove} onClick={styles.remove}>
+            Excluir
+          </button>
+        ) : null}
       </div>
     </article>
   );
