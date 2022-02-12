@@ -1,14 +1,22 @@
 // import { useState } from 'react';
+import { useContext } from 'react';
+import { KudoContext } from '../../contexts/KudoContext';
 import PropTypes from 'prop-types';
 import useAuth from '../../hooks/useAuth/useAuth';
 //import { NonceProvider } from 'react-select';
 import Avatar from '../avatar/Avatar';
 import styles from './Card.module.css';
+import { toast } from 'react-toastify';
 
-export default function Card({ recipient, sender, message }) {
+export default function Card({ id, recipient, sender, message }) {
   // const [reaction, setReaction] = useState();
   // const [openReactionBox, setOpenReactionBox] = useState();
   const { getLoggedUser } = useAuth();
+  const { deleteKudo } = useContext(KudoContext);
+  function onRemoveKudo() {
+    deleteKudo(id);
+    toast.info('Kudo removido com sucesso!');
+  }
 
   return (
     <article className={styles.card}>
@@ -29,7 +37,7 @@ export default function Card({ recipient, sender, message }) {
           ) : null}
         </div> */}
         {sender.value == getLoggedUser() ? (
-          <button id="removeKudo" className={styles.remove} onClick={styles.remove}>
+          <button id="removeKudo" className={styles.remove} onClick={onRemoveKudo}>
             Excluir
           </button>
         ) : null}

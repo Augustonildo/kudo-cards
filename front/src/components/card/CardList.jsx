@@ -8,6 +8,7 @@ export default function CardList({ kudos }) {
       {kudos?.map((kudo) => (
         <Card
           key={kudo.id}
+          id={kudo.id}
           sender={kudo.sender}
           recipient={kudo.recipient}
           message={kudo.message}
