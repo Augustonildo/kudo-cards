@@ -1,20 +1,20 @@
 const kudosService = require('./src/kudos/service');
 const usersService = require('./src/users/service');
 
-const requestManager = (response) => {
+const requestManager = (response, statusCode = 200) => {
   return {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': true,
     },
-    statusCode: 200,
+    statusCode: statusCode,
     body: JSON.stringify({ content: response }),
   };
 };
 
-const fnHandler = async (context, event) => {
+const fnHandler = async (_ = context, event) => {
   try {
-    const func = FUNCTION_PATH[event.rawPath];
+    const func = FUNCTION_PATH[event.routeKey];
     return await func(event);
   } catch (ex) {
     return {
@@ -39,6 +39,13 @@ const getKudos = () => {
   );
 };
 
+const removeKudo = (event) => {
+  const id = JSON.parse(event.pathParameters.id);
+  return Promise.resolve(kudosService.kudoService().removeKudo(id)).then(() => {
+    return requestManager({}, 204);
+  });
+};
+
 const getUsers = () => {
   return Promise.resolve(usersService.usersService().getUsers()).then((response) =>
     requestManager(response)
@@ -60,11 +67,12 @@ const signIn = (event) => {
 };
 
 const FUNCTION_PATH = {
-  '/kudo': createKudoHandler,
-  '/kudos': getKudos,
-  '/users': getUsers,
-  '/user': signUpUser,
-  '/sign-in': signIn,
+  'POST /kudo': createKudoHandler,
+  'GET /kudos': getKudos,
+  'DELETE /kudos/{id}': removeKudo,
+  'GET /users': getUsers,
+  'POST /user': signUpUser,
+  'POST /sign-in': signIn,
 };
 
 module.exports.handler = async (event, context, callback) => {
