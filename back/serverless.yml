@@ -40,6 +40,9 @@ functions:
           path: /kudos
           method: 'GET'
       - httpApi:
+          path: /kudos/{id}
+          method: 'DELETE'
+      - httpApi:
           path: /users
           method: 'GET'
       - httpApi:

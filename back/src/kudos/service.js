@@ -15,6 +15,9 @@ module.exports.kudoService = () => {
       const data = await repository.kudosRepository().getKudos();
       return data.sort(sortObjectArrayByDate);
     },
+    removeKudo: (id) => {
+      return repository.kudosRepository().deleteKudo(id);
+    },
     sortObjectArrayByDate,
   };
 };

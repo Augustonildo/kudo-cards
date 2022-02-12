@@ -44,5 +44,20 @@ module.exports.kudosRepository = () => {
         .promise();
       return data.Items;
     },
+    deleteKudo: (id) => {
+      const params = {
+        TableName,
+        Key: {
+          id: id,
+        },
+      };
+      dynamoDB.delete(params, function (err, data) {
+        if (err) {
+          throw ('Unable to delete kudo. Error JSON:', JSON.stringify(err, null, 2));
+        } else {
+          console.log(`Removed kudo:" ${JSON.stringify(data, null, 2)}`);
+        }
+      });
+    },
   };
 };
