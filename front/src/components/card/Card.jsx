@@ -1,9 +1,9 @@
 // import { useState } from 'react';
 import PropTypes from 'prop-types';
+import useAuth from '../../hooks/useAuth/useAuth';
 //import { NonceProvider } from 'react-select';
 import Avatar from '../avatar/Avatar';
 import styles from './Card.module.css';
-import { useAuth } from '../../contexts/AuthContext';
 
 export default function Card({ recipient, sender, message }) {
   // const [reaction, setReaction] = useState();

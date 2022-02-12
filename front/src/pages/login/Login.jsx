@@ -5,8 +5,8 @@ import styles from './Login.module.css';
 import loginImage from './login.svg';
 import SvgLogo from '../../components/logo/SvgLogo';
 import { EMAIL_REGEX } from '../../utils/constants';
-import { useAuth } from '../../contexts/AuthContext';
-import { apiTasks } from '../../services/api';
+import { signIn } from '../../services/requests';
+import useAuth from '../../hooks/useAuth/useAuth';
 
 export default function Login() {
   const {
@@ -18,8 +18,7 @@ export default function Login() {
   const { authenticate } = useAuth();
 
   const onLoginSubmit = (data) => {
-    apiTasks
-      .signIn(data)
+    signIn(data)
       .then((res) => {
         if (res.status === 200) {
           authenticate({ token: Date.now(), userInfo: data.email });
@@ -29,7 +28,7 @@ export default function Login() {
           toast.error('Informações de login incorretas!');
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
   return (

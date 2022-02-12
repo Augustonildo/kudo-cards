@@ -1,16 +1,15 @@
-import { useContext } from 'react';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
 import { Controller, useForm } from 'react-hook-form';
-import { KudoContext } from '../../contexts/KudoContext';
-import { UserContext } from '../../contexts/UserContext';
 import styles from './Composer.module.css';
-import { useAuth } from '../../contexts/AuthContext';
+import useAuth from '../../hooks/useAuth/useAuth';
+import useKudos from '../../hooks/useKudos/useKudos';
+import useUsers from '../../hooks/useUsers/useUsers';
 
 export default function Composer() {
   const { getLoggedUser } = useAuth();
-  const { users } = useContext(UserContext);
-  const { addKudo } = useContext(KudoContext);
+  const { users } = useUsers();
+  const { createKudo } = useKudos();
   const {
     register,
     handleSubmit,
@@ -20,14 +19,20 @@ export default function Composer() {
   } = useForm();
 
   const loggedUser = getLoggedUser();
-  const displayableUsers = users?.filter(({ value }) => value !== loggedUser);
+  const displayableUsers = users
+    ?.filter(({ email }) => email !== loggedUser)
+    ?.map(({ name, email }) => ({ value: email, label: name }));
 
-  function onSubmit(data) {
-    const sender = users.find(({ value }) => value === loggedUser);
-    addKudo({ ...data, sender });
-    toast.info('Kudo publicado com sucesso!');
+  const onSubmit = (data) => {
+    const sender = users.find(({ email }) => email === loggedUser);
+    try {
+      createKudo({ ...data, sender: { value: sender.email, label: sender.name } });
+      toast.info('Kudo publicado com sucesso!');
+    } catch (error) {
+      toast.error('Erro ao publicar Kudo ' + error);
+    }
     reset();
-  }
+  };
 
   return (
     <form className={styles.composer} onSubmit={handleSubmit(onSubmit)}>

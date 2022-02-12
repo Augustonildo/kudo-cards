@@ -1,8 +1,8 @@
-import { FiHome, FiSearch, FiAlertCircle } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { FiHome, FiSearch, FiAlertCircle } from 'react-icons/fi';
 import Logo from '../logo/Logo';
 import styles from './Sidebar.module.css';
+import useAuth from '../../hooks/useAuth/useAuth';
 
 export default function Sidebar() {
   const { logout } = useAuth();
