@@ -1,25 +1,21 @@
 import { FiSearch, FiX } from 'react-icons/fi';
-import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
-import { useState } from 'react';
+import useFilter from '../../hooks/useFilter/useFilter';
 
-export default function Filter({ filterConditions }) {
-  const [isSearching, setIsSearching] = useState(false);
+export default function Filter() {
+  const { isSearching, setFilteringState } = useFilter();
   const onChangeFilterState = () => {
-    setIsSearching(!isSearching);
-    filterConditions.sender = '';
-    filterConditions.receiver = '';
-    filterConditions.message = '';
+    setFilteringState((prevState) => {
+      return {
+        isSearching: !prevState.isSearching,
+        searchTerm: '',
+      };
+    });
   };
-  const onChangeSearchedReceiver = (value) => {
-    console.log(value);
-    filterConditions.receiver = value;
-  };
-  const onChangeSearchedSender = (value) => {
-    filterConditions.sender = value;
-  };
-  const onChangeSearchedMessage = (value) => {
-    filterConditions.sender = value;
+  const onChangeSearchedTerm = (value) => {
+    setFilteringState((prevState) => {
+      return { ...prevState, searchTerm: value };
+    });
   };
   const searchFilter = () => {
     if (isSearching) {
@@ -28,23 +24,9 @@ export default function Filter({ filterConditions }) {
           <input
             className={styles.filterInput}
             type="text"
-            value={filterConditions.receiver}
-            placeholder="Destinatário..."
-            onChange={(e) => onChangeSearchedReceiver(e.target.value)}
-          />
-          <input
-            className={styles.filterInput}
-            type="text"
-            value={filterConditions.sender}
-            placeholder="Remetente..."
-            onChange={(e) => onChangeSearchedSender(e.target.value)}
-          />
-          <input
-            className={styles.filterInput}
-            type="text"
-            value={filterConditions.message}
-            placeholder="Mensagem..."
-            onChange={(e) => onChangeSearchedMessage(e.target.value)}
+            name="term"
+            placeholder="Pesquisar..."
+            onChange={(e) => onChangeSearchedTerm(e.target.value)}
           />
           <FiX id="closeSearch" className={styles.closeFilter} onClick={onChangeFilterState} />
         </div>
@@ -62,11 +44,3 @@ export default function Filter({ filterConditions }) {
 
   return searchFilter();
 }
-
-Filter.propTypes = {
-  filterConditions: PropTypes.shape({
-    sender: PropTypes.string,
-    recipient: PropTypes.string,
-    message: PropTypes.string,
-  }),
-};
