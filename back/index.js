@@ -40,7 +40,7 @@ const getKudos = () => {
 };
 
 const removeKudo = (event) => {
-  const id = JSON.parse(event.pathParameters.id);
+  const id = event.pathParameters.id;
   return Promise.resolve(kudosService.kudoService().removeKudo(id)).then(() => {
     return requestManager({}, 204);
   });
