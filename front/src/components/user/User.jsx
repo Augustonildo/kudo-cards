@@ -11,7 +11,6 @@ export default function User() {
   const { getLoggedUser } = useAuth();
   const { users } = useUsers();
   const { kudos } = useKudos();
-  console.log({ users });
   const { email: userEmail, name: userName } = users.find(({ email }) => email === getLoggedUser());
   const myKudos = kudos.filter(
     (kudo) => kudo.sender.value === userEmail || kudo.recipient.value === userEmail
