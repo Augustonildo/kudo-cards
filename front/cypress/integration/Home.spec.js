@@ -67,7 +67,24 @@ describe('Testing Home page', () => {
         .find('div')
         .eq(0)
         .find('span')
-        .should('have.text', 'testPara: John LennonTesting kudo!');
+        .eq(1)
+        .should('have.text', 'test');
+
+      cy.get('article', { timeout: 5000 })
+        .eq(0)
+        .find('div')
+        .eq(0)
+        .find('span')
+        .eq(2)
+        .should('have.text', 'Para: John Lennon');
+
+      cy.get('article', { timeout: 5000 })
+        .eq(0)
+        .find('div')
+        .eq(0)
+        .find('span')
+        .eq(3)
+        .should('have.text', 'Testing kudo!');
     });
   });
 });
