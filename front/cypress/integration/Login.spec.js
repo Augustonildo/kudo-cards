@@ -1,4 +1,8 @@
 describe('Tests Login page', () => {
+  beforeEach(() => {
+    cy.clearAuthTokens();
+  });
+
   it('should login correctly', () => {
     cy.intercept('http://localhost:3000/sign-in', { statusCode: 200 });
     cy.visit('http://localhost:3001');

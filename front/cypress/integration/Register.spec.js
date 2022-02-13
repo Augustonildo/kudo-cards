@@ -1,4 +1,8 @@
 describe('Tests Register page', () => {
+  beforeEach(() => {
+    cy.clearAuthTokens();
+  });
+
   it('should register user', () => {
     cy.intercept({ url: 'http://localhost:3000/user', method: 'POST' }, { statusCode: 200 });
     cy.visit('http://localhost:3001/registro');
