@@ -64,7 +64,6 @@ describe('Testing Home Page', () => {
     );
 
     expect(screen.getByText('Página Inicial')).toBeInTheDocument();
-    expect(screen.getByText('Buscar')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Perfil' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Escreva um kudo!' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Sair' })).toBeInTheDocument();
@@ -108,7 +107,6 @@ describe('Testing Home Page', () => {
     );
 
     expect(screen.getByText('Página Inicial')).toBeInTheDocument();
-    expect(screen.getByText('Buscar')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Perfil' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Escreva um kudo!' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Sair' })).toBeInTheDocument();
@@ -163,7 +161,6 @@ describe('Testing Home Page', () => {
     );
 
     expect(screen.getByText('Página Inicial')).toBeInTheDocument();
-    expect(screen.getByText('Buscar')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Perfil' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Escreva um kudo!' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Sair' })).toBeInTheDocument();

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FiHome, FiSearch, FiAlertCircle } from 'react-icons/fi';
+import { FiHome, FiAlertCircle } from 'react-icons/fi';
 import Logo from '../logo/Logo';
 import styles from './Sidebar.module.css';
 import useAuth from '../../hooks/useAuth/useAuth';
@@ -16,12 +16,6 @@ export default function Sidebar() {
             <FiHome />
           </span>
           <span>Página Inicial</span>
-        </div>
-        <div className={styles.menuItem}>
-          <span className={styles.menuItemIcon}>
-            <FiSearch />
-          </span>
-          <span>Buscar</span>
         </div>
         <Link to="/profile" className={styles.menuItem}>
           <span className={styles.menuItemIcon}>
