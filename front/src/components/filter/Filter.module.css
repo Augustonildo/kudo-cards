@@ -1,0 +1,27 @@
+.searchFilter {
+  margin: 12px 0;
+  border: none;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 12px 24px;
+  align-self: flex-start;
+  box-shadow: 2px 2px var(--accent-color);
+  background-color: var(--tertiary-color);
+}
+
+.closeFilter {
+  margin: 12px 0;
+  cursor: pointer;
+  padding: 12px 24px;
+  align-self: flex-start;
+  color: var(--tertiary-color);
+}
+
+.filterInput {
+  box-shadow: 2px 2px var(--accent-color);
+  color: var(--tertiary-color);
+  margin: 0px 4px 12px 4px;
+  padding: 6px 12px;
+  border: 1px solid #d0d0d0;
+}
