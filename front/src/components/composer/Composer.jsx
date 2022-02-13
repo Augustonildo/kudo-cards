@@ -39,6 +39,7 @@ export default function Composer() {
       <Controller
         control={control}
         name="recipient"
+        rules={{ required: 'Campo obrigatorio!' }}
         render={({ field }) => (
           <Select
             isClearable

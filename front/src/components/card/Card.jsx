@@ -45,7 +45,7 @@ export default function Card({ id, recipient, sender, message }) {
         </div>
       </div>
       {sender.value == getLoggedUser() ? (
-        <span className={styles.remove} onClick={onRemoveKudo}>
+        <span className={styles.remove} aria-label="deletar kudo" onClick={onRemoveKudo}>
           <FiTrash />
         </span>
       ) : null}
