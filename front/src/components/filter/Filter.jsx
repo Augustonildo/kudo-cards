@@ -17,32 +17,25 @@ export default function Filter() {
       return { ...prevState, searchTerm: value };
     });
   };
-  const searchFilter = () => {
-    if (isSearching) {
-      return (
-        <div className={styles.filterBlock}>
-          <button id="closeSearch" className={styles.closeFilter} onClick={onChangeFilterState}>
-            <FiX size={20} />
-          </button>
-          <input
-            className={styles.filterInput}
-            type="text"
-            name="term"
-            placeholder="Pesquisar..."
-            onChange={(e) => onChangeSearchedTerm(e.target.value)}
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div className={styles.filterBlock}>
-          <button id="openSearch" className={styles.searchFilter} onClick={onChangeFilterState}>
-            <FiSearch size={20} />
-          </button>
-        </div>
-      );
-    }
-  };
 
-  return searchFilter();
+  return isSearching ? (
+    <div className={styles.filterBlock}>
+      <button id="closeSearch" className={styles.closeFilter} onClick={onChangeFilterState}>
+        <FiX size={20} />
+      </button>
+      <input
+        className={styles.filterInput}
+        type="text"
+        name="term"
+        placeholder="Pesquisar..."
+        onChange={(e) => onChangeSearchedTerm(e.target.value)}
+      />
+    </div>
+  ) : (
+    <div className={styles.filterBlock}>
+      <button id="openSearch" className={styles.searchFilter} onClick={onChangeFilterState}>
+        <FiSearch size={20} />
+      </button>
+    </div>
+  );
 }
