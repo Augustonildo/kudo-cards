@@ -40,7 +40,9 @@ export default function User() {
         <Avatar name={userInfo?.name} size={104} radius={50} />
       </div>
       <p className={styles.username}> {userInfo?.name} </p>
-      <Filter />
+      <div className={styles.userFilter}>
+        <Filter />
+      </div>
       <div className={styles.userCardList}>
         <CardList kudos={myKudos} />
       </div>
