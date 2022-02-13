@@ -11,9 +11,9 @@ export default function User() {
   const { getLoggedUser } = useAuth();
   const { users } = useUsers();
   const { kudos } = useKudos();
-  const { email: userEmail, name: userName } = users.find(({ email }) => email === getLoggedUser());
-  const myKudos = kudos.filter(
-    (kudo) => kudo.sender.value === userEmail || kudo.recipient.value === userEmail
+  const userInfo = users?.find(({ email }) => email === getLoggedUser());
+  const myKudos = kudos?.filter(
+    (kudo) => kudo.sender.value === userInfo?.email || kudo.recipient.value === userInfo?.email
   );
 
   return (
@@ -29,9 +29,9 @@ export default function User() {
         </div>
       </div>
       <div className={styles.userImage}>
-        <Avatar name={userName} size={104} radius={50} />
+        <Avatar name={userInfo?.name} size={104} radius={50} />
       </div>
-      <p className={styles.username}> {userName} </p>
+      <p className={styles.username}> {userInfo?.name} </p>
       <div className={styles.userCardList}>
         <CardList kudos={myKudos} />
       </div>
