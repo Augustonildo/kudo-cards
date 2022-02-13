@@ -1,5 +1,6 @@
 // import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { FiTrash } from 'react-icons/fi';
 import useAuth from '../../hooks/useAuth/useAuth';
 //import { NonceProvider } from 'react-select';
 import Avatar from '../avatar/Avatar';
@@ -24,28 +25,30 @@ export default function Card({ id, recipient, sender, message }) {
 
   return (
     <article className={styles.card}>
-      <Avatar name={sender.label} />
-      <div className={styles.cWrapper}>
-        <div className={styles.header}>
-          <div className={styles.cardTitle}>
-            <span>{sender.label}</span>
-            <span>Para: {recipient.label}</span>
+      <div className={styles.headerContentWrapper}>
+        <Avatar name={sender.label} />
+        <div className={styles.cWrapper}>
+          <div className={styles.header}>
+            <div className={styles.cardTitle}>
+              <span>{sender.label}</span>
+              <span>Para: {recipient.label}</span>
+            </div>
           </div>
-        </div>
-        <span className={styles.content}>{message}</span>
-        {/* <div onClick={() => setOpenReactionBox((prevState) => !prevState)}>Reações:</div>
+          <span className={styles.content}>{message}</span>
+          {/* <div onClick={() => setOpenReactionBox((prevState) => !prevState)}>Reações:</div>
         <div>{reaction}</div>
         <div>
-          {openReactionBox ? (
-            <input type="text" onChange={(e) => setReaction(e.target.value)} />
+        {openReactionBox ? (
+          <input type="text" onChange={(e) => setReaction(e.target.value)} />
           ) : null}
         </div> */}
-        {sender.value == getLoggedUser() ? (
-          <button id="removeKudo" className={styles.remove} onClick={onRemoveKudo}>
-            Excluir
-          </button>
-        ) : null}
+        </div>
       </div>
+      {sender.value == getLoggedUser() ? (
+        <span className={styles.remove} onClick={onRemoveKudo}>
+          <FiTrash />
+        </span>
+      ) : null}
     </article>
   );
 }
