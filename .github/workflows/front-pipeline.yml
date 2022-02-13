@@ -46,6 +46,7 @@ jobs:
       - name: E2E on Chrome
         uses: cypress-io/github-action@v2
         with:
+          working-directory: front
           start: yarn start
           browser: chrome
           headless: true
