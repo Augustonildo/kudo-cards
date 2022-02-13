@@ -32,11 +32,11 @@ afterEach(() => {
 
 describe('Testing Home page', () => {
   it('should add a kudo', () => {
+    cy.intercept({ url: 'http://localhost:3000/kudo', method: 'POST' }, { statusCode: 200 });
     cy.visit('http://localhost:3001');
 
     cy.get('#react-select-3-live-region').siblings('div').type('John Lennon{enter}');
     cy.get('textarea').type('Testing kudo!');
-    cy.get('button').contains('Publicar!').click();
 
     cy.intercept(
       { url: 'http://localhost:3000/kudos', method: 'GET' },
@@ -59,6 +59,7 @@ describe('Testing Home page', () => {
         ],
       }
     ).as('swr');
+    cy.get('button').contains('Publicar!').click();
 
     cy.wait('@swr').then(() => {
       cy.get('article', { timeout: 5000 })
