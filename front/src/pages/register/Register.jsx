@@ -4,8 +4,8 @@ import styles from './Register.module.css';
 import loginImage from '../login/login.svg';
 import SvgLogo from '../../components/logo/SvgLogo';
 import { EMAIL_REGEX } from '../../utils/constants';
-import { useAuth } from '../../contexts/AuthContext';
-import { apiTasks } from '../../services/api';
+import useAuth from '../../hooks/useAuth/useAuth';
+import useUsers from '../../hooks/useUsers/useUsers';
 
 export default function Register() {
   const {
@@ -14,21 +14,18 @@ export default function Register() {
     formState: { errors },
   } = useForm();
 
+  const { createUser } = useUsers();
   const { authenticate } = useAuth();
 
   const onRegisterSubmit = (data) => {
-    apiTasks
-      .createUser(data)
-      .then((res) => {
-        if (res.status === 200) {
-          authenticate({ token: Date.now(), userInfo: data.email });
-          toast.success('Usuário criado com sucesso!');
-        }
-        if (res.status === 400) {
-          toast.error('Algum erro ocorreu! Tente novamente.');
-        }
-      })
-      .catch((err) => console.log(err));
+    try {
+      createUser(data);
+      authenticate({ token: Date.now(), userInfo: data.email });
+      toast.success('Usuário criado com sucesso!');
+    } catch (error) {
+      console.error(error);
+      toast.error('Algum erro ocorreu! Tente novamente. ' + error);
+    }
   };
 
   return (

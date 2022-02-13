@@ -5,7 +5,7 @@ import Card from '../card/Card';
 export default function CardList({ kudos }) {
   return (
     <Fragment>
-      {kudos.map((kudo) => (
+      {kudos?.map((kudo) => (
         <Card
           key={kudo.id}
           sender={kudo.sender}

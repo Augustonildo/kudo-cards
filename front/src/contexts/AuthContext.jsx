@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
 export const AuthContext = createContext({
   logout: () => {},
@@ -10,10 +10,9 @@ export const AuthContext = createContext({
 AuthContext.displayName = 'AuthContext';
 
 export function AuthProvider({ children }) {
-  const localToken = localStorage.getItem('token');
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    () => Boolean(localToken?.length) ?? false
-  );
+  const localTokens =
+    localStorage.getItem('token')?.length > 0 && localStorage.getItem('user')?.length > 0;
+  const [isAuthenticated, setIsAuthenticated] = useState(() => localTokens);
 
   function authenticate({ token, userInfo }) {
     setIsAuthenticated(true);
@@ -36,13 +35,4 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuth() {
-  const context = useContext(AuthContext);
-
-  if (!context) {
-    throw new Error('useAuth must be within its context');
-  }
-  return context;
 }
