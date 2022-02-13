@@ -13,7 +13,7 @@ export default function useKudos() {
 
   const deleteKudo = (id) => {
     axios
-      .delete(`/kudo/${id}`)
+      .delete(`/kudos/${id}`)
       .then(() => mutate())
       .catch((e) => console.error(e));
   };
