@@ -32,6 +32,13 @@
   border-top: 1.5px solid rgba(188, 140, 242, 0.25);
 }
 
+.userFilter {
+  width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .userCardList > * {
   box-sizing: border-box;
   border-bottom: 1.5px solid rgba(188, 140, 242, 0.25);

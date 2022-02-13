@@ -20,7 +20,10 @@ export default function Filter() {
   const searchFilter = () => {
     if (isSearching) {
       return (
-        <div>
+        <div className={styles.filterBlock}>
+          <button id="closeSearch" className={styles.closeFilter} onClick={onChangeFilterState}>
+            <FiX size={20} />
+          </button>
           <input
             className={styles.filterInput}
             type="text"
@@ -28,14 +31,13 @@ export default function Filter() {
             placeholder="Pesquisar..."
             onChange={(e) => onChangeSearchedTerm(e.target.value)}
           />
-          <FiX id="closeSearch" className={styles.closeFilter} onClick={onChangeFilterState} />
         </div>
       );
     } else {
       return (
-        <div>
+        <div className={styles.filterBlock}>
           <button id="openSearch" className={styles.searchFilter} onClick={onChangeFilterState}>
-            <FiSearch />
+            <FiSearch size={20} />
           </button>
         </div>
       );
