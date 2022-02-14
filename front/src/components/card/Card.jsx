@@ -1,17 +1,15 @@
-// import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FiTrash } from 'react-icons/fi';
 import useAuth from '../../hooks/useAuth/useAuth';
-//import { NonceProvider } from 'react-select';
 import Avatar from '../avatar/Avatar';
+import Reaction from '../reaction/Reaction';
 import styles from './Card.module.css';
 import { toast } from 'react-toastify';
 import useKudos from '../../hooks/useKudos/useKudos';
 
-export default function Card({ id, recipient, sender, message }) {
-  // const [reaction, setReaction] = useState();
-  // const [openReactionBox, setOpenReactionBox] = useState();
-  const { deleteKudo } = useKudos();
+export default function Card({ kudo }) {
+  const { id, recipient, sender, message, reactions } = kudo;
+  const { deleteKudo, editKudo } = useKudos();
   const { getLoggedUser } = useAuth();
 
   const onRemoveKudo = () => {
@@ -20,6 +18,19 @@ export default function Card({ id, recipient, sender, message }) {
       toast.info('Kudo removido com sucesso!');
     } catch (error) {
       toast.error('Erro ao remover Kudo. ' + error);
+    }
+  };
+
+  const postReaction = (reactions) => {
+    try {
+      const editedKudo = {
+        ...kudo,
+        reactions,
+      };
+      editKudo(editedKudo);
+      toast.info('Kudo reagido com sucesso!');
+    } catch (error) {
+      toast.error('Erro ao reagir Kudo. ' + error);
     }
   };
 
@@ -35,13 +46,7 @@ export default function Card({ id, recipient, sender, message }) {
             </div>
           </div>
           <span className={styles.content}>{message}</span>
-          {/* <div onClick={() => setOpenReactionBox((prevState) => !prevState)}>Reações:</div>
-        <div>{reaction}</div>
-        <div>
-        {openReactionBox ? (
-          <input type="text" onChange={(e) => setReaction(e.target.value)} />
-          ) : null}
-        </div> */}
+          <Reaction reactions={reactions} postReaction={postReaction} />
         </div>
       </div>
       {sender.value == getLoggedUser() ? (
@@ -54,14 +59,20 @@ export default function Card({ id, recipient, sender, message }) {
 }
 
 Card.propTypes = {
-  id: PropTypes.string,
-  recipient: PropTypes.shape({
-    label: PropTypes.string,
-    value: PropTypes.string,
+  kudo: PropTypes.shape({
+    id: PropTypes.string,
+    recipient: PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string,
+    }),
+    sender: PropTypes.shape({
+      value: PropTypes.string,
+      label: PropTypes.string,
+    }),
+    message: PropTypes.string,
+    reactions: PropTypes.shape({
+      [PropTypes.string]: PropTypes.string,
+    }),
+    date: PropTypes.string,
   }),
-  sender: PropTypes.shape({
-    value: PropTypes.string,
-    label: PropTypes.string,
-  }),
-  message: PropTypes.string,
 };

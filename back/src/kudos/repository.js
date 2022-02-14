@@ -28,6 +28,26 @@ module.exports.kudosRepository = () => {
       }
       return id;
     },
+    putKudo: (kudo) => {
+      const params = {
+        TableName,
+        Item: {
+          ...kudo,
+        },
+      };
+      try {
+        dynamoDB.put(params, function (err, data) {
+          if (err) {
+            throw ('Unable to put kudo. Error JSON:', JSON.stringify(err, null, 2));
+          } else {
+            console.log(`Editted kudo:" ${JSON.stringify(data, null, 2)}`);
+          }
+        });
+      } catch (err) {
+        console.log(err);
+      }
+      return kudo.id;
+    },
     getKudos: async () => {
       const params = {
         TableName,

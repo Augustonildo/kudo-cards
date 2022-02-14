@@ -39,6 +39,13 @@ const getKudos = () => {
   );
 };
 
+const editKudoHandler = (event) => {
+  const kudoData = JSON.parse(event.body);
+  return Promise.resolve(kudosService.kudoService().editKudo(kudoData)).then((id) => {
+    return requestManager({ ...JSON.parse(event.body), id });
+  });
+};
+
 const removeKudo = (event) => {
   const id = event.pathParameters.id;
   return Promise.resolve(kudosService.kudoService().removeKudo(id)).then(() => {
@@ -68,6 +75,7 @@ const signIn = (event) => {
 
 const FUNCTION_PATH = {
   'POST /kudo': createKudoHandler,
+  'PUT /kudo': editKudoHandler,
   'GET /kudos': getKudos,
   'DELETE /kudos/{id}': removeKudo,
   'GET /users': getUsers,

@@ -11,6 +11,13 @@ export default function useKudos() {
       .catch((e) => console.error(e));
   };
 
+  const editKudo = (body) => {
+    axios
+      .put('kudo', body)
+      .then(() => mutate())
+      .catch((e) => console.error(e));
+  };
+
   const deleteKudo = (id) => {
     axios
       .delete(`/kudos/${id}`)
@@ -20,6 +27,7 @@ export default function useKudos() {
 
   return {
     createKudo,
+    editKudo,
     deleteKudo,
     kudos: data,
     kudosError: error,

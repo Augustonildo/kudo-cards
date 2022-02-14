@@ -6,13 +6,7 @@ export default function CardList({ kudos }) {
   return (
     <Fragment>
       {kudos?.map((kudo) => (
-        <Card
-          key={kudo.id}
-          id={kudo.id}
-          sender={kudo.sender}
-          recipient={kudo.recipient}
-          message={kudo.message}
-        />
+        <Card key={kudo.id} kudo={kudo} />
       ))}
     </Fragment>
   );
@@ -31,6 +25,10 @@ CardList.propTypes = {
         label: PropTypes.string,
       }),
       message: PropTypes.string,
+      reactions: PropTypes.shape({
+        [PropTypes.string]: PropTypes.string,
+      }),
+      date: PropTypes.string,
     }).isRequired
   ),
 };
