@@ -80,7 +80,7 @@ export default function Reaction({ postReaction, reactions = {} }) {
       </div>
       <div ref={emojiSelectorRef}>
         {isChoosingEmoji && (
-          <Picker onEmojiClick={(event, emojiObject) => onEmojiClick(emojiObject.emoji)} />
+          <Picker onEmojiClick={(_event, emojiObject) => onEmojiClick(emojiObject.emoji)} />
         )}
       </div>
     </>
