@@ -37,6 +37,9 @@ functions:
           path: /kudo
           method: 'POST'
       - httpApi:
+          path: /kudo
+          method: 'PUT'    
+      - httpApi:
           path: /kudos
           method: 'GET'
       - httpApi:

@@ -11,6 +11,9 @@ module.exports.kudoService = () => {
     createKudo: (kudo) => {
       return repository.kudosRepository().insertKudo(kudo);
     },
+    editKudo: (kudo) => {
+      return repository.kudosRepository().putKudo(kudo);
+    },
     getKudos: async () => {
       const data = await repository.kudosRepository().getKudos();
       return data.sort(sortObjectArrayByDate);
